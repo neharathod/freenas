@@ -118,7 +118,8 @@ class CIFS_Share(Model):
         max_length=255,
         blank=True,
         default='aio_pthread,streams_xattr',
-        choices=list(choices.CIFS_VFS_OBJECTS())
+        choices=list(choices.CIFS_VFS_OBJECTS()),
+        attrs={'onchange': 'full_audit_enable()'}
     )
     cifs_storage_task = models.ForeignKey(
         Task,
